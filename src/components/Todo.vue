@@ -24,7 +24,7 @@ export default {
 <style lang="scss">
 
 .todo {
-    background: rgba($color: #000000, $alpha: .1);
+    background: rgba($color: #FFFF, $alpha: 1);
     padding: .25rem;
     height: 3rem;
     display: flex;

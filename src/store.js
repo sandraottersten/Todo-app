@@ -1,21 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    todos: [
-    {done: false, text: 'Vattna blommorna'},
-    {done: false, text: 'Mata katten'},
-    {done: true, text: 'Laga middag'}
-  ],
-  activeSlide: 0
-
+      todos: [],
+      activeSlide: 0
   },
   mutations: {
-      addTodo(state, todo){
-        state.todos.push(todo)
+      setTodos(state, todos){
+        state.todos = todos;
       },
       updateTodo(state, index){
         state.todos[index].done = !state.todos[index].done;
@@ -26,10 +22,15 @@ export default new Vuex.Store({
 
   },
   actions: {
+      async getTodos(ctx){
+        let todos = await axios.get('http://localhost:3000/todos');
+        ctx.commit('setTodos', todos.data);
+      },
+
       newTodo(ctx, todo){
         if(todo.text !==  ''){
         ctx.commit('addTodo', todo)
       }
-    }  
+    }
   }
 })

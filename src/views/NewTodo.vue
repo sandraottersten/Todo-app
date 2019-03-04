@@ -3,8 +3,8 @@
         <header>
         </header>
         <section class="content">
-            <input type="text" v-model="newTodo">
-            <p> {{newTodo.length}} / 30 tecken</p>
+            <input type="text" v-model="todo.newTodo">
+            <p> {{todo.newTodo.length}} / 30 tecken</p>
         </section>
         <footer>
             <a href="#" @click="addTodo" class="btn">Add new Todo</a>
@@ -17,17 +17,18 @@ export default {
     name: 'newTodo',
     data(){
         return {
+          todo: {
+            done: false,
             newTodo: ''
+          }
         }
     },
     methods: {
-      addTodo(){
-        let todo = {
-          done: false,
-          text: this.newTodo
-        }
-
-        this.$store.dispatch('newTodo', todo);
+      async addTodo(){
+        let newTodo = this.todo
+        console.log(this.$http)
+        let resp = await this.$http.post('http://localhost:3000/todos', newTodo)
+        this.$store.dispatch('getTodo');
         this.newTodo = '';
         this.$store.commit('swipe', 0);
       }

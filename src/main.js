@@ -2,8 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import touch from 'vue2-touch-events'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
-Vue.use(touch);
+Vue.use(touch, VueAxios, axios);
 
 Vue.config.productionTip = false
 

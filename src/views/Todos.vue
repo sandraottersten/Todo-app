@@ -1,8 +1,9 @@
 <template>
     <main id="todos">
         <header>
-            <h1>STICKYY</h1>
-            <p>När det har svårt att fastna...</p>
+            <img src="../assets/logo.png" alt="">
+            <h1>TeflonBrain</h1>
+            <p>Make it stick</p>
         </header>
         <section class="content">
             <todo v-for="(todoData, index) in todos" :key="index" :todo="todoData" :index="index"/>
@@ -50,6 +51,10 @@ export default {
             p {
                 margin: 0;
                 font-style: italic;
+            }
+
+            img {
+                width: 2.5rem;
             }
         }
 
