@@ -21,7 +21,10 @@ export default {
   components: {
     todos,
     newtodo
-  }
+  },
+  beforeMount(){
+  this.$store.dispatch('getTodos')
+}
 }
 </script>
 

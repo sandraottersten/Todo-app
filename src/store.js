@@ -5,23 +5,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    todos: [
-    {done: false, text: 'Vattna blommorna'},
-    {done: false, text: 'Mata katten'},
-    {done: true, text: 'Laga middag'}
-  ],
-  activeSlide: 0
+    todos: [],
+    activeSlide: 0
 
   },
   mutations: {
-      addTodo(state, todo){
-        state.todos.push(todo)
-      },
+
       updateTodo(state, index){
         state.todos[index].done = !state.todos[index].done;
       },
       swipe(state, activeSlide){
         state.activeSlide = activeSlide;
+      },
+      setTodos(state, todos){
+        state.todos.push(todos);
+        console.log(state.todos)
       }
 
   },
@@ -29,7 +27,18 @@ export default new Vuex.Store({
       newTodo(ctx, todo){
         if(todo.text !==  ''){
         ctx.commit('addTodo', todo)
+        }
+      },
+      addTodo(ctx, todo){
+        let arr = this.state.todos
+        arr.push(todo);
+        console.log(arr)
+        localStorage.setItem('todos', JSON.stringify(arr));
+      },
+      getTodos(ctx){
+        let todos = localStorage.getItem('todos');
+        ctx.commit('setTodos', JSON.parse(todos));
+        console.log(todos)
       }
-    }  
   }
 })

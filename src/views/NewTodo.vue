@@ -27,7 +27,7 @@ export default {
           text: this.newTodo
         }
 
-        this.$store.dispatch('newTodo', todo);
+        this.$store.dispatch('addTodo', todo);
         this.newTodo = '';
         this.$store.commit('swipe', 0);
       }
