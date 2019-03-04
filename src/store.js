@@ -27,9 +27,12 @@ export default new Vuex.Store({
         ctx.commit('setTodos', todos.data);
       },
 
-      newTodo(ctx, todo){
+      async newTodo(ctx, todo){
         if(todo.text !==  ''){
-        ctx.commit('addTodo', todo)
+          console.log(todo)
+          let resp = await axios.post('http://localhost:3000/todos', todo)
+
+        //ctx.commit('getTodos')
       }
     }
   }
